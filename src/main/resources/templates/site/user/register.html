@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{site/index.html}">
+<head>
+<
+</head>
+<body>
+	
+			<section class="row" layout:fragment="content">
+				<div class="col">
+          <div class="col-8 offset-2">
+            <form th:action="@{/register}" method="post" th:object="${account}">
+            
+              <div class="card">
+                <div class="card-header">
+                  <b>Đăng ký</b>
+                </div>
+                <div class="card-body">
+                <div th:if="${message != null}" class="alert alert-primary" role="alert">
+                            <i>[[${message}]]</i>
+                        </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="username">Username</label>
+                         <input type="text" 
+                          class="form-control" th:field="*{username}"
+                          aria-describedby="usernameHid" 
+                          placeholder="username">
+                        <small id="usernameHid" class="form-text text-muted">
+                          username is required</small>
+                      </div>
+                      <div class="form-group">
+                        <label for="fullname">Fullname</label> 
+                        <input type="text" 
+                          class="form-control" th:field="*{fullname}" 
+                          aria-describedby="fullnameHid" placeholder="fullname">
+                        <small id="fullnameHid" class="form-text text-muted">
+                          fullname is required</small>
+                      </div>
+                      <div class="form-group">
+                                <label for="categoryId">role</label>
+                                <select class="form-control" th:field="*{role}">
+                                  <option value="role_user">role_user</option>
+                                </select>
+                              </div>
+                    </div>
+                    <div class="form-group">
+                    	<label for="categoryId" >Kích hoạt</label>
+                    	<input type="checkbox" th:field="*{activated}">
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="password">Password</label> <input type="password"
+                          class="form-control" th:field="*{password}"
+                          placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label> <input type="text" 
+                          class="form-control" th:field="*{email}"
+                          aria-describedby="emailnameHid" placeholder="email"> <small
+                          id="emailHid" class="form-text text-muted"> Email is
+                          required</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer text-muted">
+                <button class="btn btn-success" type="submit">SendMail</button>
+                  <button class="btn btn-success" type="submit">ĐĂNG ký</button>
+                  Hoặc <a class="dropdown-item" th:href="@{/login}">Đăng
+											nhập</a>
+                </div>
+              </div>
+            </form>
+          </div>
+				</div>
+			</section>
+			
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

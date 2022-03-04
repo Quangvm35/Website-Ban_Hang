@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{site/index.html}">
+<head>
+
+<link rel="stylesheet" href="">
+</head>
+<body>
+	
+			<section class="row"  layout:fragment="content">
+				<div class="col">
+					<div class="row row-cols-1 row-cols-md-2 mb-3"
+						style="margin-left: 100px;">
+						<div class="card border-primary"
+							style="width: 18rem; margin: 15px" th:each=" product : ${productsPage}">
+							<img th:src="@{'/images/' + ${product.image}}" alt="">
+							<div class="card-body">
+							<p class="card-text" style="background-color: gray;">
+									<b th:text="${product.name}"></b>
+								</p>
+								<div style="float: right;">
+									<a th:href="@{'/addCart/' + ${product.id}}"
+										class="btn btn-success">Thêm vào giỏ hàng</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer text-muted">
+						<nav class="mt-2" aria-label="Page navigation example" th:if="${productsPage.totalPages > 0}">
+                        <ul class="pagination pagination-sm justify-content-center">
+                            <li th:class="${productsPage.number + 1 == 1} ? 'page-item active' : 'page-item'"
+                                style="margin-right: 5px">
+                                <a th:href="@{/product/sort(size=${productsPage.size}, page=${1}, sort='false')}"
+                                   class="page-link">First</a>
+                            </li>
+
+                            <li th:each="pageNumber : ${pageNumbers}"
+                                th:if="${productsPage.totalPages > 0}"
+                                th:class="${pageNumber == productsPage.number + 1} ? 'page-item active' : 'page-item'">
+                                <a th:href="@{/product/sort(page=${pageNumber}, sort='false')}"
+                                   class="page-link" th:text="${pageNumber}"></a>
+                            </li>
+
+                            <li
+                                    th:class="${productsPage.number + 1 == productsPage.totalPages} ? 'page-item active' : 'page-item'"
+                                    style="margin-left: 5px">
+                                <a th:href="@{/product/sort(size=${productsPage.size}, page=${productsPage.totalPages}, sort='false')}"
+                                   class="page-link">Last</a>
+                            </li>
+                        </ul>
+                    </nav>
+					</div>
+				</div>
+			</section>
+			
+</body>
+</html>

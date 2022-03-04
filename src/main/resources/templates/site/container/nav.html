@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+</head>
+<body>
+	<div th:fragment="nav">
+		<main>
+			<div class="container-fluid text-center text-primary font-weight-bold font-italic">
+				<nav class="mb-1 navbar navbar-expand-lg navbar-light bg-danger">
+					<a class="navbar-brand" th:href="@{/fpolyshop.vn}">Home</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent-555"
+						aria-controls="navbarSupportedContent-555" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse "
+						id="navbarSupportedContent-555">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item active"><a class="nav-link"
+								th:href="@{/product}">Sản phẩm 
+							</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/list-order}">Đơn hàng</a></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" role="button"
+								id="dropdownMenuLink" data-bs-toggle="dropdown"
+								aria-expanded="false"> Tài khoản </a>
+
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<th:block sec:authorize="!isAuthenticated()">
+										<li><a class="dropdown-item" th:href="@{/login}">Login</a></li>
+										<li><a class="dropdown-item" th:href="@{/register}">Registration</a></li>
+										<li><a class="dropdown-item"
+										th:href="@{//forgot-password}">Forgot Password</a></li>
+									</th:block>
+											
+									<th:block th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+										<li><a class="dropdown-item" th:href="@{/admin}">Admin Manager</a></li>
+									</th:block>
+									<th:block sec:authorize="isAuthenticated()">
+										<li><a class="dropdown-item"
+										th:href="@{/logoff}">Log out</a></li>
+									</th:block>
+								</ul></li>
+						</ul>
+						<ul class="navbar-nav ml-auto nav-flex-icons">
+							<li class="nav-item"><a
+								class="nav-link waves-effect waves-light">1 <i
+									class="fas fa-envelope"></i>
+							</a></li>
+							<li><a> <img
+									src="/images/ao_ni.jpg " width="50" height="50"
+									class="rounded-circle z-depth-0" alt="avatar image">
+							</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

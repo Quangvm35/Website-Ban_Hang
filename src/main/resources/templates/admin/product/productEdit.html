@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{admin/layout.html}">
+  <head>
+    
+  </head>
+  <body> 
+ 
+          <!-- Content -->
+          <section class="row" layout:fragment="content">
+                <div class="col">
+                  <section class="row">
+                    <div class="col  mt-4 ">
+                      <form th:action="@{/admin/product/edit}" method="post" th:object="${product}">
+                      <div class="card">
+                        <div class="card-header">
+                         <h2>Edit Product</h2>
+                        </div>
+                        <div class="card-body">
+                        <div th:if="${message != null}" class="alert alert-primary" role="alert">
+                            <i>[[${message}]]</i>
+                        </div>
+                          <div class="row">
+                            <div class="col-7">
+                              <div class="form-group">
+                                <label for="productId">Product ID</label>
+                                <input type="text" class="form-control" th:field="*{id}" aria-describedby="productIdHid" placeholder="Product ID">
+                                <small id="productIdHid" class="form-text text-muted">Product is required</small>
+                              </div>
+                              <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" th:field="*{name}" aria-describedby="nameHid" placeholder="Name">
+                                <small id="nameHid" class="form-text text-muted">Name is required</small>
+                              </div>
+                              <div class="form-group">
+                                <label for="quantity">Quantity</label>
+                                <input type="text" class="form-control" th:field="*{quantity}" aria-describedby="quantityHid" placeholder="Quantity">
+                                <small id="quantityHid" class="form-text text-muted">Quantity is required</small>
+                              </div>
+                              <div class="input-group form-group">
+                                <span class="input-group-text">Unit Price</span>
+                                <input type="number" th:field="*{price}" class="form-control" placeholder="Unit Price">
+                                <span class="input-group-text">$</span>
+                              </div>
+                              <div class="input-group form-group">
+                                <span class="input-group-text">Discount</span>
+                                <input type="number" th:field="*{discount}" class="form-control" placeholder="Discount">
+                                <span class="input-group-text">%</span>
+                              </div>
+                              <div class="form-group">
+                                <label for="categoryId">Category</label>
+                                <select class="form-control" th:field="*{categoriesid}">
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-3">
+                              <img src="/images/ao_ni.jpg" width="90%" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                              <div class="form-group">
+                                <label for="productImages">Images file</label>
+                                <input type="file" class="form-control-file" th:field="*{image}" placeholder="images file" aria-describedby="imageHid">
+                                <small id="imageHid" class="form-text text-muted">Images is required</small>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label for="description">Descreption</label>
+                                <textarea class="form-control" th:field="*{descreption}" rows="5"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-footer text-muted">
+                         <button class="btn btn-primary">Update</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </section>
+                </div>
+          </section>
+          
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
